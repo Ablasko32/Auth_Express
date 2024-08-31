@@ -1,0 +1,21 @@
+{
+  "name": "auth_base",
+  "version": "1.0.0",
+  "description": "Auth project, for diffrent kinds of authorization",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "watch": "npx tailwindcss -i ./public/styles/input.css -o ./public/styles/output.css --watch",
+    "build": "npx tailwindcss -i ./public/styles/input.css -o ./public/styles/output.css ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Antonio Blašković",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "expressjs": "^1.0.1",
+    "tailwindcss": "^3.4.10"
+  }
+}
