@@ -1,7 +1,4 @@
 import pg from "pg";
-import { configDotenv } from "dotenv";
-
-configDotenv({ path: "../.env" });
 
 // Establisihing Pool Connection to PostgreSQL
 const db = new pg.Pool({
@@ -14,4 +11,5 @@ const db = new pg.Pool({
 
 db.connect();
 
-export { db };
+console.log(db.options);
+export default db;
