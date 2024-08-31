@@ -1,3 +1,5 @@
+import db from "../config/database.js";
+
 // Get register
 export function getRegisterController(req, res) {
   res.render("register.ejs");

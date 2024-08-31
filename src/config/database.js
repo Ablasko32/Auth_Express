@@ -1,4 +1,7 @@
+import { configDotenv } from "dotenv";
 import pg from "pg";
+
+configDotenv();
 
 // Establisihing Pool Connection to PostgreSQL
 const db = new pg.Pool({
@@ -11,5 +14,4 @@ const db = new pg.Pool({
 
 db.connect();
 
-console.log(db.options);
 export default db;
