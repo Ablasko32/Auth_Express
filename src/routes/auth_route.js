@@ -31,4 +31,20 @@ authRouter.post(
   })
 );
 
+// GOOGLE
+// google auth
+authRouter.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+
+// callback
+authRouter.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "/secret",
+    failureRedirect: "/login",
+  })
+);
+
 export { authRouter };

@@ -28,11 +28,15 @@ export async function PostRegisterController(req, res) {
       // bcrypt for hashing 10 salt rounds, and then insert in table
       bcrypt.hash(password, 10, async (err, hash) => {
         const insertData = await db.query(
-          "INSERT INTO users(email, password) VALUES ($1,$2)",
+          "INSERT INTO users(email, password) VALUES ($1,$2) RETURNING *",
           [email, hash]
         );
+        // returning inserted data as user, user is logged in session and redirected to secrets
+        const user = insertData.rows[0];
+        req.login(user, (err) => {
+          res.redirect("/secret");
+        });
       });
-      res.redirect("/secret");
     }
   } catch (err) {
     console.log(err);

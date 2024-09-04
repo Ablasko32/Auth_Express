@@ -1,5 +1,6 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
+import GoogleStrategy from "passport-google-oauth2";
 import db from "./database.js";
 import bcrypt from "bcrypt";
 
@@ -34,6 +35,39 @@ passport.use(
   })
 );
 
+// google strategy
+passport.use(
+  "google",
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: "http://localhost:3000/auth/google/callback",
+      userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
+    },
+    async (acessToken, refreshToken, profile, cb) => {
+      // Checks to see if user exists, if it does it callbacks user, if not inserts new user and callbacks that user
+      try {
+        const doesUserExist = await db.query(
+          "SELECT * FROM users WHERE email=$1",
+          [profile.email]
+        );
+        if (doesUserExist.rows.length === 0) {
+          const insertNewUser = await db.query(
+            "INSERT INTO users(email,password) VALUES ($1, $2)",
+            [profile.email, "google"]
+          );
+          return cb(null, insertNewUser.rows[0]);
+        } else {
+          return cb(null, doesUserExist.rows[0]);
+        }
+      } catch (err) {
+        return cb(err);
+      }
+    }
+  )
+);
+
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
 });
@@ -41,7 +75,7 @@ passport.serializeUser((user, cb) => {
 passport.deserializeUser(async (id, cb) => {
   try {
     const loadUser = await db.query("SELECT * FROM users WHERE id=$1", [id]);
-    cb(null, loadUser);
+    cb(null, loadUser.rows);
   } catch (err) {
     cb(err, null);
   }
