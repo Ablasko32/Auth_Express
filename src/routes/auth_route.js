@@ -6,6 +6,7 @@ import {
   PostLoginController,
 } from "../controllers/auth_controller.js";
 import passport from "../config/passport.js";
+import { CSRFProtected } from "../middleware/csrf_middlewere.js";
 
 const authRouter = express.Router();
 
@@ -16,15 +17,13 @@ authRouter.get("/register", getRegisterController);
 authRouter.get("/login", getLoginController);
 
 //Post register
-authRouter.post("/register", PostRegisterController);
+authRouter.post("/register", CSRFProtected, PostRegisterController);
 
 //Post Login
 authRouter.post(
   "/login",
-  (req, res, next) => {
-    console.log("Login route hit");
-    next();
-  },
+
+  CSRFProtected,
   passport.authenticate("local", {
     successRedirect: "/secret",
     failureRedirect: "/login",

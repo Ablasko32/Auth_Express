@@ -25,6 +25,7 @@
           <!-- hidden part -->
           <div id="hidden-part" class="p-10 pt-5 hidden">
           <form class="flex flex-col space-y-2 text-gray-700" action="/register" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <input type="text" placeholder="Email" name="email" class="p-1 rounded-t-md bg-white/40 placeholder:text-gray-600 focus:outline-none focus:ring ring-gray-200">
             <input type="password" placeholder="Password" name="password" class="p-1 rounded-t-md bg-white/40 placeholder:text-gray-600 focus:outline-none focus:ring ring-gray-200">
             <input type="submit" value="Register" class="bg-white/20 mx-auto py-1 px-2 rounded-md text-gray-700 font-medium hover:scale-105">
@@ -38,11 +39,15 @@
               <div class="flex-1 border-t border-gray-700"></div>
           </div>
   
-       <!-- Google etc... -->
-       <div class="flex justify-center items-center">
-        <a class="bg-white/20
-         py-1 px-2 rounded-md text-gray-700 " href="/auth/google" >Register with <span class="font-medium">Google</span></a>
-      </div>
+     
+        <!-- Google etc... -->
+        <div class="flex justify-center items-center">
+          <a class="bg-white/20
+           py-1 px-2 rounded-md text-gray-700 flex space-x-2 items-center " href="/auth/google" >
+           <span>Register with</span><span class="font-medium">Google</span>
+           <img  class="h-5 w-5 " src="images/google_icon.webp">
+          </a>
+        </div>
            
         </div>
           
