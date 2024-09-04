@@ -5,6 +5,7 @@ import {
   PostRegisterController,
   PostLoginController,
 } from "../controllers/auth_controller.js";
+import passport from "../config/passport.js";
 
 const authRouter = express.Router();
 
@@ -18,6 +19,16 @@ authRouter.get("/login", getLoginController);
 authRouter.post("/register", PostRegisterController);
 
 //Post Login
-authRouter.post("/login", PostLoginController);
+authRouter.post(
+  "/login",
+  (req, res, next) => {
+    console.log("Login route hit");
+    next();
+  },
+  passport.authenticate("local", {
+    successRedirect: "/secret",
+    failureRedirect: "/login",
+  })
+);
 
 export { authRouter };
