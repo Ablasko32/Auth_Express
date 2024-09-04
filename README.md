@@ -31,6 +31,6 @@ npm i
 node ./app.js
 ```
 
-<img src="./github_resources/img1.PNG" >
-<img src="./github_resources/img2.PNG" >
-<img src="./github_resources/img3.PNG" >
+<img src="./github_resources/img1.png" >
+<img src="./github_resources/img2.png" >
+<img src="./github_resources/img3.png" >
