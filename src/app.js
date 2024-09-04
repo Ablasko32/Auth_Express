@@ -35,6 +35,10 @@ app.use("/", IndexRouter);
 app.use("/", authRouter);
 app.use("/", secretRouter);
 
+app.get("*", (req, res) => {
+  res.status(404).render("default_err.ejs");
+});
+
 app.listen(default_port, "0.0.0.0", () => {
   console.log(`Server listening on port localhost:${default_port}`);
 });
