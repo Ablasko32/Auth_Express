@@ -596,8 +596,16 @@ video {
   position: relative;
 }
 
+.sticky {
+  position: sticky;
+}
+
 .inset-0 {
   inset: 0px;
+}
+
+.bottom-2 {
+  bottom: 0.5rem;
 }
 
 .z-10 {
@@ -893,6 +901,14 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-white\/40 {
+  color: rgb(255 255 255 / 0.4);
+}
+
+.text-white\/90 {
+  color: rgb(255 255 255 / 0.9);
 }
 
 .ring-gray-200 {

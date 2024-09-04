@@ -1,7 +1,6 @@
 import { configDotenv } from "dotenv";
 import pg from "pg";
-
-configDotenv();
+import "./config.js";
 
 // Establisihing Pool Connection to PostgreSQL
 const db = new pg.Pool({

@@ -8,8 +8,7 @@ import session from "express-session";
 import bodyParser from "body-parser";
 import passport from "./config/passport.js";
 import { CsrfMiddlewere } from "./middleware/csrf_middlewere.js";
-
-configDotenv();
+import "./config/config.js";
 
 const app = express();
 const default_port = process.env.APP_PORT;
